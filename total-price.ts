@@ -1,8 +1,8 @@
 interface PriceObj {
     price: number,
     discount: number,
-    isInstallment: boolean,
-    months: number,
+    isInstallment?: boolean,
+    months?: number,
 }
 
 const totalPrice = ({ price, discount, isInstallment, months }: PriceObj): number => {
@@ -13,7 +13,7 @@ const totalPrice = ({ price, discount, isInstallment, months }: PriceObj): numbe
     }
 
     if (isInstallment) {
-        if (months > 0) {
+        if (months) {
             result = result / months;
         }
     }
@@ -21,5 +21,5 @@ const totalPrice = ({ price, discount, isInstallment, months }: PriceObj): numbe
     return result;
 };
 
-const price = totalPrice({ price: 100000, discount: 25, isInstallment: true, months: 12 });
+const price = totalPrice({ price: 100000, discount: 25 });
 console.log(price);
