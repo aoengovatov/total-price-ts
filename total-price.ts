@@ -1,6 +1,25 @@
+interface PriceObj {
+    price: number,
+    discount: number,
+    isInstallment: boolean,
+    months: number,
+}
 
-let n: number;
+const totalPrice = ({ price, discount, isInstallment, months }: PriceObj): number => {
+    let result = price;
 
-n = 10
+    if (discount > 0) {
+        result = result * (100 - discount) / 100;
+    }
 
-console.log(n)
+    if (isInstallment) {
+        if (months > 0) {
+            result = result / months;
+        }
+    }
+
+    return result;
+};
+
+const price = totalPrice({ price: 100000, discount: 25, isInstallment: true, months: 12 });
+console.log(price);
